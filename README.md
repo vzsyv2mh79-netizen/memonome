@@ -1,6 +1,6 @@
 # 🌱 芽メモ / Memonome
 
-日本語のiPhoneメモアプリと、本人のChatGPT利用枠で試作品を作るMac連携。MITライセンスで公開しています。
+日本語のiPhoneメモアプリと、本人のChatGPT利用枠でWebアプリを開発・実行・検証するMac連携。MITライセンスで公開しています。
 
 **開発版です。App Storeへ提出済みの1.0とは別のコードです。本人のChatGPTアカウントで接続・Astraの試作品生成を検証済みです。iPhoneのモバイル回線からの同期・自動生成・進捗反映も実機確認済み。チップ商品はApple側で登録準備中です。**
 
@@ -10,10 +10,10 @@
 - ダークモード、ロック画面から新規メモ。
 - 自分専用の同期フォルダでiPhoneとMacを接続。送信対象はメモごとに選択。
 - 公式Sign in with ChatGPT。Macに保存する認証情報を同期フォルダへ入れません。
-- メモからHTML/CSS/JSの試作品を生成し、Macへ保存。進捗と停止・再開をiPhoneに表示。
+- メモからHTML/CSS/JSを生成し、Macの隔離ブラウザで実行・操作テスト。不具合を最大3回修正。進捗と停止・再開をiPhoneに表示。
 - 任意のチップ用StoreKit画面。価格はAppleから取得。未登録時は準備中と表示。
 
-現在の自動開発は**静的Webアプリの試作品作成まで**です。実行・動作テスト・iPhoneアプリ化・App Store提出・公開は行いません。40%は試作品作成の段階を示す目安で、工数や完成度の保証ではありません。
+自動開発の対象は**ローカルで動作するWebアプリ**です。実装・起動・操作テスト・修正・再テストまで進みます。70%は自動テスト合格の目安です。iPhoneアプリ化・実機確認・App Store提出・公開は別途必要です。外部通信は遮断し、生成されたシェルやPythonは実行しません。
 
 ## 追加料金への対策と限界
 
@@ -37,7 +37,8 @@ Python 3.12以降を用意して実行します。
 
 ```sh
 python3 -m venv .venv
-.venv/bin/pip install -r companion/requirements.txt
+.venv/bin/python -m pip install -r companion/requirements.txt
+.venv/bin/python -m playwright install chromium
 .venv/bin/python companion/main.py --sync '/自分専用の同期フォルダ'
 ```
 
